@@ -19,3 +19,9 @@
       <%= form.submit %>
     </p>
   <% end %>
+<% if @author.errors.any? %>
+  <h2>Errors</h2>
+  <% @author.errors.full_messages.each do |message|%>
+    <p><%= message %></p>
+  <% end %>
+<% end %>

@@ -22,4 +22,11 @@ describe "New author page", type: :feature do
         @author = Author.new(first_name: 'Alan', homepage: 'http://wikipedia.org/Alan_Turing')
         expect(@author).to_not be_valid
     end
+    it "sgould show an error message if the last name is not given" do
+        visit new_author_path
+        fill_in 'author[first_name]', with: 'Alan'
+        fill_in 'author[homepage]', with: 'http://wikipedia.org/Alan_Turing'
+        find('input[type="submit"]').click
+        expect(page).to have_text("Last name can't be blank")
+    end
 end
