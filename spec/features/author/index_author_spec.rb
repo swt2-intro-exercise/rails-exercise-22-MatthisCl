@@ -12,4 +12,10 @@ describe "Author index page", type: :feature do
         visit authors_path
         expect(page).to have_link('Add author', href: new_author_path)
     end
+    it "should have a link to each author's edit page" do
+        visit authors_path
+        Author.all.each do |author|
+            expect(page).to have_link('Edit', href: edit_author_path(author))
+        end
+    end
 end
