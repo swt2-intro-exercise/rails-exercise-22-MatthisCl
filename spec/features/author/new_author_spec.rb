@@ -18,4 +18,8 @@ describe "New author page", type: :feature do
         fill_in 'author[homepage]', with: 'http://wikipedia.org/Alan_Turing'
         find('input[type="submit"]').click
     end
+    it "should not save an author without a last name" do
+        @author = Author.new(first_name: 'Alan', homepage: 'http://wikipedia.org/Alan_Turing')
+        expect(@author).to_not be_valid
+    end
 end
